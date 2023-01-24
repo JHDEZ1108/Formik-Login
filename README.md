@@ -19,7 +19,7 @@ This is a project about how to use Formik at a professional level
     Desde la raiz del repositorio:
 
     ```sh
-    npm
+    npm install
     ```
 
 3.  **Inicia el proyecto**
