@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form , Field} from 'formik';
+import { Formik, Form , Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
 import "./App.css"
@@ -46,6 +46,7 @@ const App: React.FC = () =>{
                   name="name"
                   as="input"
                 />
+                <ErrorMessage name="name"/>
               </div>
               
               <div>
@@ -55,6 +56,7 @@ const App: React.FC = () =>{
                   as="select"
                   placeholder="Choose your position"
                 >
+                  <option value=""></option>
                   <option value="front-end">FrontEnd Developer</option>
                   <option value="back-end">BackEnd Developer</option>
                   <option value="devops-engineer">DevOps Engineer</option>
