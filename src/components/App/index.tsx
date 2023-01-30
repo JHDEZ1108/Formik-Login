@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 
 import "./App.css"
 
+import FormikField from "../FormikField";
 interface FormValues{
   name: string;
   position: string;
@@ -32,22 +33,14 @@ const App: React.FC = () =>{
     <div className="App">
       <h1>Sign Up</h1>
       <Formik
+        validationSchema={SignupSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={SignupSchema}
       >
         {({dirty, isValid}) =>{
           return(
             <Form>
-              <div>
-                <label>Name:</label>
-                <Field
-                  placeholder="What's your name?"
-                  name="name"
-                  as="input"
-                />
-                <ErrorMessage name="name"/>
-              </div>
+              <FormikField name="name" label="Name" required/>
               
               <div>
                 <label>Position:</label>
