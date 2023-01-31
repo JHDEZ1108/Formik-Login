@@ -10,7 +10,7 @@ This is a project about how to use Formik at a professional level
     En caso que no lo hayas hecho ya: 
 
     ```sh
-    git clone git@github.com:JHDEZ1108/Formik-Login.git
+    git clone git@github.com:JHDEZ1108/Formik-Signup.git
     cd Formik-Login
     ```
     
