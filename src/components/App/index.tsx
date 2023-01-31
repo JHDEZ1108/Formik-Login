@@ -1,3 +1,4 @@
+/* ---------- Imports -----------*/
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -6,13 +7,14 @@ import "./App.css"
 
 import FormikSelect, { FormikSelectItem } from "../FormikSelect";
 import FormikField from "../FormikField";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 interface FormValues{
   name: string;
   position: string;
 }
 
+/* ---------- Inital Values -----------*/
 const initialValues: FormValues = {
   name: '',
   position: ''
@@ -42,7 +44,7 @@ const App: React.FC = () =>{
     alert(JSON.stringify(values));
   };
 
-  /* Validation schemas */
+/* ---------- Form validation Schemas -----------*/
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, 'Too short to be a name!')
@@ -62,22 +64,48 @@ const App: React.FC = () =>{
         {({dirty, isValid}) =>{
           return(
             <Form>
-              <FormikField name="name" label="Name" required/>
+              <FormikField 
+                required
+                name="name" 
+                label="Name" 
+              />
+              <FormikField 
+                required
+                name="lastname" 
+                label="Last Name" 
+              />
+              <FormikField 
+                required 
+                name="email" 
+                label="Email" 
+              />
+              <FormikField 
+                required 
+                name="password" 
+                label="Password" 
+              />
+              <FormikField
+                required
+                type="password"
+                name="passwordConfirm"
+                label="Confirm Password"
+              />
               <FormikSelect
                 required
                 name="position"
                 label="Position"
                 items={positionItems}
               />
-              
-              <Button
-                disabled={!dirty || !isValid}
-                variant="contained"
-                color="primary"
-                type="submit"
-              >
-                Submit
-              </Button>
+              <Typography align="center">
+                <Button
+                  disabled={!dirty || !isValid}
+                  variant= "contained"
+                  color= "primary"
+                  type= "submit"
+                >
+                  REGISTER
+                </Button>
+              </Typography>
             </Form>
           );
         }}
