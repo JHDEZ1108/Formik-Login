@@ -20,6 +20,7 @@ const initialValues: FormValues = {
   position: ''
 }
 
+
 const positionItems: FormikSelectItem[] = [
   {
     label: "Front End Developer",
@@ -38,6 +39,13 @@ const positionItems: FormikSelectItem[] = [
     value: "designer"
   }
 ];
+/* ---------- Fake emails -----------*/
+const emailAddresses = [
+  'test@gmail.com',
+  'test2@outlook.com',
+  'test3@yahoo.com'
+];
+
 
 const App: React.FC = () =>{
   const handleSubmit = (values: FormValues): void => {
@@ -49,6 +57,11 @@ const App: React.FC = () =>{
     name: Yup.string()
       .min(2, 'Too short to be a name!')
       .required('You need to add a name!'),
+    email: Yup.string()
+      .lowercase()
+      .email('Must be a valid email!')
+      .notOneOf(emailAddresses, 'Email already taken!')
+      .required('Required!'),
     position: Yup.string()
       .required('You need to add a position!')
   });
