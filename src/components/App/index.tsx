@@ -6,6 +6,7 @@ import "./App.css"
 import FormikSelect, { FormikSelectItem } from "../FormikSelect";
 import FormikField from "../FormikField";
 import { Button, Typography, Box, useMediaQuery } from "@mui/material";
+import swal from 'sweetalert'
 
 /* ---------- Interface -----------*/
 interface FormValues{
@@ -52,7 +53,7 @@ const specialRegex = /(?=.*[!@#$%^&/~`*])/;
 
 const App: React.FC = () =>{
   const handleSubmit = (values: FormValues): void => {
-    alert(JSON.stringify(values));
+    swal("All done!", "Successful sign up!", "success");
   };
 
 /* ---------- Form validation Schemas -----------*/
