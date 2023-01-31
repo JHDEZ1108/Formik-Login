@@ -2,13 +2,12 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-
 import "./App.css"
-
 import FormikSelect, { FormikSelectItem } from "../FormikSelect";
 import FormikField from "../FormikField";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Box, useMediaQuery } from "@mui/material";
 
+/* ---------- Interface -----------*/
 interface FormValues{
   name: string;
   position: string;
@@ -80,9 +79,27 @@ const App: React.FC = () =>{
     .required('Required!'),
   });
   
+  const isNonMobileScreens = useMediaQuery("(min-width: 400px)");
+  
   return(
-    <div className="App">
-      <h1>Sign Up</h1>
+    <Box 
+      className="App"
+      width={isNonMobileScreens ? "50%" : "93%"}
+      borderRadius="1.5rem"
+      m="3rem auto"
+      p="2rem"
+    >
+      <Typography
+        variant="h4"
+      >
+        Welcome to Effort Stack!
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{color:"#313251", fontStyle: "oblique", mb:"2rem"}}
+      >
+        Let's get started
+      </Typography>
       <Formik
         validationSchema={SignupSchema}
         initialValues={initialValues}
@@ -124,21 +141,26 @@ const App: React.FC = () =>{
                 label="Position"
                 items={positionItems}
               />
-              <Typography align="center">
-                <Button
-                  disabled={!dirty || !isValid}
-                  variant= "contained"
-                  color= "primary"
-                  type= "submit"
-                >
-                  REGISTER
-                </Button>
-              </Typography>
+              <Button
+                disabled={!dirty || !isValid}
+                fullWidth
+                type= "submit"
+                variant= "contained"
+                sx={{
+                  backgroundColor: "#c5a102",
+                  color: "#151d2f",
+                  fontWeight: "bold",
+                  fontSize: "15px",
+                  "&:hover": { backgroundColor: "#f5d9a5"},
+                }}
+              >
+                REGISTER
+              </Button>
             </Form>
           );
         }}
       </Formik>
-    </div>
+    </Box>
   );
 };
 
