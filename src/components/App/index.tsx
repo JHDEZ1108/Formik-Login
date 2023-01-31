@@ -89,6 +89,7 @@ const App: React.FC = () =>{
       borderRadius="1.5rem"
       m="3rem auto"
       p="2rem"
+      sx={{boxShadow: 5}}
     >
       <Typography
         variant="h4"
@@ -152,6 +153,7 @@ const App: React.FC = () =>{
                   color: "#151d2f",
                   fontWeight: "bold",
                   fontSize: "15px",
+                  mt:"2rem",
                   "&:hover": { backgroundColor: "#f5d9a5"},
                 }}
               >
