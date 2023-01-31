@@ -45,7 +45,11 @@ const emailAddresses = [
   'test2@outlook.com',
   'test3@yahoo.com'
 ];
-
+/* ---------- Regex validation -----------*/
+const lowercaseRegex = /(?=.*[a-z])/;
+const uppercaseRegex = /(?=.*[A-Z])/;
+const numericRegex = /(?=.*[0-9])/;
+const specialRegex = /(?=.*[!@#$%^&/~`*])/;
 
 const App: React.FC = () =>{
   const handleSubmit = (values: FormValues): void => {
@@ -63,7 +67,17 @@ const App: React.FC = () =>{
       .notOneOf(emailAddresses, 'Email already taken!')
       .required('Required!'),
     position: Yup.string()
-      .required('You need to add a position!')
+      .required('You need to add a position!'),
+    password: Yup.string()
+      .matches(lowercaseRegex, 'Password must include lowercase letter!')
+      .matches(uppercaseRegex, 'Password must include uppercase letter!')
+      .matches(numericRegex, 'Password must include digit!')
+      .matches(specialRegex, "Password must include special character!")
+      .min(6, "Password must be at least 6 characters!")
+      .required('Required!'),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref('password')], 'Password must be the same!')
+    .required('Required!'),
   });
   
   return(
@@ -94,6 +108,7 @@ const App: React.FC = () =>{
               />
               <FormikField 
                 required 
+                type="password"
                 name="password" 
                 label="Password" 
               />
