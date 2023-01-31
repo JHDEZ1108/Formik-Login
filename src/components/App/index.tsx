@@ -1,10 +1,13 @@
 import React from 'react';
-import { Formik, Form , Field, ErrorMessage} from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import "./App.css"
 
+import FormikSelect, { FormikSelectItem } from "../FormikSelect";
 import FormikField from "../FormikField";
+import { Button } from "@mui/material";
+
 interface FormValues{
   name: string;
   position: string;
@@ -14,6 +17,25 @@ const initialValues: FormValues = {
   name: '',
   position: ''
 }
+
+const positionItems: FormikSelectItem[] = [
+  {
+    label: "Front End Developer",
+    value: "front-end"
+  },
+  {
+    label: "Back End Developer",
+    value: "back-end"
+  },
+  {
+    label: "Dev Ops Engineer",
+    value: "dev-ops"
+  },
+  {
+    label: "Designer",
+    value: "designer"
+  }
+];
 
 const App: React.FC = () =>{
   const handleSubmit = (values: FormValues): void => {
@@ -26,7 +48,7 @@ const App: React.FC = () =>{
       .min(2, 'Too short to be a name!')
       .required('You need to add a name!'),
     position: Yup.string()
-      .required('You need to add a position')
+      .required('You need to add a position!')
   });
   
   return(
@@ -41,25 +63,23 @@ const App: React.FC = () =>{
           return(
             <Form>
               <FormikField name="name" label="Name" required/>
+              <FormikSelect
+                required
+                name="position"
+                label="Position"
+                items={positionItems}
+              />
               
-              <div>
-                <label>Position:</label>
-                <Field
-                  name="position"
-                  as="select"
-                  placeholder="Choose your position"
-                >
-                  <option value=""></option>
-                  <option value="front-end">FrontEnd Developer</option>
-                  <option value="back-end">BackEnd Developer</option>
-                  <option value="devops-engineer">DevOps Engineer</option>
-                  <option value="designer">Designer</option>
-                </Field>
-              </div>
-              
-              <button disabled={!dirty || !isValid} type="submit">Submit</button>
+              <Button
+                disabled={!dirty || !isValid}
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Submit
+              </Button>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
