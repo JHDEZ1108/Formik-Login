@@ -5,7 +5,9 @@ This is a project about how to use Formik at a professional level
 
 ### Demo: https://formik-signup-es.netlify.app/
 --------
-### 🤖 Guía Rápida
+<h3 align="center">
+🤖 Guía Rápida
+</h3>
 
 1.  **Clona el repositorio.**
 
