@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import "./App.css"
 import FormikSelect, { FormikSelectItem } from "../FormikSelect";
 import FormikField from "../FormikField";
-import { Button, Typography, Box, useMediaQuery } from "@mui/material";
+import { Button, Typography, Box, useMediaQuery, Stack } from "@mui/material";
 import swal from 'sweetalert'
 
 /* ---------- Interface -----------*/
@@ -89,7 +89,7 @@ const App: React.FC = () =>{
       borderRadius="1.5rem"
       m="3rem auto"
       p="2rem"
-      sx={{boxShadow: 5}}
+      sx={{boxShadow: '0px 0px 5px 2px rgba(0, 0, 0, 0.2)'}}
     >
       <Typography
         variant="h4"
@@ -122,6 +122,7 @@ const App: React.FC = () =>{
               />
               <FormikField 
                 required 
+                type="email"
                 name="email" 
                 label="Email" 
               />
@@ -143,22 +144,26 @@ const App: React.FC = () =>{
                 label="Position"
                 items={positionItems}
               />
-              <Button
-                disabled={!dirty || !isValid}
-                fullWidth
-                type= "submit"
-                variant= "contained"
-                sx={{
-                  backgroundColor: "#c5a102",
-                  color: "#151d2f",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  mt:"2rem",
-                  "&:hover": { backgroundColor: "#f5d9a5"},
-                }}
-              >
-                REGISTER
-              </Button>
+              <Stack sx={{ alignItems: "center" }}>
+                <Button
+                  disabled={!dirty || !isValid}
+                  fullWidth
+                  type= "submit"
+                  variant= "contained"
+                  sx={{
+                    backgroundColor: "#c5a102",
+                    color: "#151d2f",
+                    fontWeight: "bold",
+                    height: "45px",
+                    fontSize: "15px",
+                    mt:"2rem",
+                    width: "80%",
+                    "&:hover": { backgroundColor: "#f5d9a5"},
+                  }}
+                >
+                  REGISTER
+                </Button>
+              </Stack>
             </Form>
           );
         }}
